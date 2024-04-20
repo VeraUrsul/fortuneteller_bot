@@ -25,13 +25,6 @@ TELEGRAM_TOKEN = os.getenv('TELEGRAM_TOKEN')
 CHAT_ID = os.getenv('CHAT_ID')
 
 
-# Отправка сообщения при старте бота
-#def send_message(message):
-#    bot.send_message(CHAT_ID, message)
-
-#send_message(message)
-
-
 def oracle_of_letitia(update, context, cards=12):
     """ Гадание *Оракул Летиции*. Из колоды (32 карты) в случайном порядке 
     извлекаются 12 карт и составляются в пары (1,12; 2,11; 3,10; 4,9; 5,8; 6,7)
@@ -45,15 +38,11 @@ def oracle_of_letitia(update, context, cards=12):
         card = random.choice(DECK_OF_CARDS)
         collection.append(card)
         DECK_OF_CARDS.remove(card)
-    #print(collection)
     # собираем в пары (первая, последняя)
     pairs = list(zip(collection, collection[::-1]))
-    #print(pairs)
     # создается 12 пар, после 6-ой пары идет повторение, удаляем последние 6 пар
     unique_pairs = pairs[: len(pairs) - len(pairs) // 2]
-    #print(unique_pairs)
     unique_pairs_in_time = list(zip(TIMES, unique_pairs))
-    #print(unique_pairs_in_time)
     mean_main_and_add_cards = []
     for time, cards in unique_pairs_in_time:
         main_card_title, add_card_title = cards[0]['title'], cards[1]['title']
@@ -78,7 +67,6 @@ def oracle_of_letitia(update, context, cards=12):
         for time, main_card_title, add_card_title, main_card_meaning,
             add_card_meaning, divination_of_pair in mean_main_and_add_cards
     ])
-    #print(fortune_telling)
     update.message.reply_text(
         'Гадание "Оракул Лeтиции"\n\n'
         'Не забывайте, карты капризны. Если они решили не говорить\n'
@@ -115,13 +103,20 @@ def value_birthday(update, context):
     )
 
 
-def say_hi(update, context):
+# Отправка сообщения при старте бота (функция на доработке)
+#def send_message(message):
+#    bot.send_message(CHAT_ID, message)
+
+#send_message(message)
+
+
+#def say_hi(update, context): (функция на доработке)
     # Получаем информацию о чате, из которого пришло сообщение,
     # и сохраняем в переменную chat
-    chat = update.effective_chat
+#    chat = update.effective_chat
     # В ответ на любое текстовое сообщение 
     # будет отправлено 'Привет, я KittyBot!'
-    context.bot.send_message(chat_id=chat.id, text='Привет, я KittyBot!')
+#    context.bot.send_message(chat_id=chat.id, text='Привет, я KittyBot!')
 
 
 def name_number(update, context):
@@ -216,14 +211,13 @@ def main():
     )
     updater.dispatcher.add_handler(CallbackQueryHandler(button))
 
-
-
-
+    ##_______ Раздел на доработке
     # Регистрируется обработчик MessageHandler;
     # из всех полученных сообщений он будет выбирать только текстовые сообщения
     # и передавать их в функцию say_hi()
 
     #updater.dispatcher.add_handler(MessageHandler(Filters.text, divination_weekday))
+    ##_______
 
     # Метод start_polling() запускает процесс polling, 
     # приложение начнёт отправлять регулярные запросы для получения обновлений.

@@ -19,7 +19,3 @@ ZODIAC_SINGS = dict(
     pisces = soup.select('body > div.layout > div:nth-child(3) > div:nth-child(5) > div > div > div > div > div > div:nth-child(13) > div > div:nth-child(2) > div:nth-child(3)'),
 )
 d = ZODIAC_SINGS['capricorn'][0].text
-#print(type(d))
-#print(d)
-#print(capricorn[0].text)
-#price = result['value']
