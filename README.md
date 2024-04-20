@@ -9,16 +9,56 @@
 
 ## Как запустить проект:
 
-### Cоздать и активировать виртуальное окружение:
+### 1. Клонирование кода приложения с GitHub
+```
+
+git clone git@github.com:VeraUrsul/fortuneteller_bot.git
+
+```
+### 2. Cоздать и активировать виртуальное окружение:
+```
+# Переходим в директорию fortuneteller_bot
+cd fortuneteller_bot/
+# Создаём виртуальное окружение
 python -m venv venv
-source venv/Scripts/activate 
+# Активируем виртуальное окружение.
+# для Linux
+source venv/bin/activate
+# для Windows
+source venv/Scripts/activate
 
-### Обновить пакет pip
+```
+
+### 3. Установить зависимости из файла requirements.txt:
+```
+
+# Обновить пакет pip
 python -m pip install --upgrade pip
-
-### Установить зависимости из файла requirements.txt:
+# Устанавливаем зависимости
 pip install -r requirements.txt
 
-## Автор [Урсул Вера](https://github.com/VeraUrsul)
+```
 
-## Телеграм бот [Узнай свою судьбу](https://web.telegram.org/a/#6344722417)
+## 4. Создание и заполнение файла .env
+
+```
+
+touch .env
+nano .env
+TELEGRAM_TOKEN = '<GDUIYDYRYT641659565gcygvkchfxhvihcg>'
+CHAT_ID = '<5543675147>'
+
+```
+
+## 5. Запускаем приложение
+
+```
+
+ python main.py 
+
+ ```
+
+
+## 6. Переходим по ссылке на телеграм бот [Узнай свою судьбу](https://web.telegram.org/a/#6344722417)
+
+## Автор [Урсул Вера](https://github.com/VeraUrsul)
